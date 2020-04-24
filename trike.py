@@ -113,12 +113,12 @@ def get_value(board, last_move, depth):
     if is_over or depth == 0: return is_over * last_turn
 
     # Otherwise, explore the game tree:
-    value = LOSING
+    value = WINNING
     for move in legal_moves(board, last_move):
         board[move] = -last_turn                                    # Make move
-        value       = max(value, -get_value(board, move, depth-1))  # Get value
+        value       = min(value, -get_value(board, move, depth-1))  # Get value
         board[move] = EMPTY                                         # Undo move
-        if value == WINNING: break                                  # Prunning
+        if value == LOSING: break                                   # Prunning
 
     return value
 
@@ -215,7 +215,7 @@ def trike(size, AI_level):
 
     if turn == PLAYER: print("\n You play first")
     else:              print("\n The computer plays first")
-
+    
     # Play the game:
     while True:
 
@@ -234,6 +234,6 @@ def trike(size, AI_level):
             else:                 print("\n You have lost!")
             break
 
-if __name__ == "__main__": trike(size=6, AI_level=6)
+if __name__ == "__main__": trike(size=5, AI_level=15)
 
 ################################################################################
