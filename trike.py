@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
@@ -122,7 +122,7 @@ def get_value(board, last_move, depth):
 
     return value
 
-def get_computer_move(board, last_move, AI_level, report=True):
+def get_computer_move(board, last_move, AI_level):
     """Return the best move the AI is able to find at the current AI_level"""
 
     winning = []
@@ -141,13 +141,12 @@ def get_computer_move(board, last_move, AI_level, report=True):
         else:                  losing.append(move)
 
     # Report results:
-    if report:
-        cells = ((r,c) for r in range(board["size"]) for c in range(r+1))
-        name  = {cell:str(i+1) for i,cell in enumerate(cells)}
-        print("\n AI(" + str(AI_level) + ") found...\n")
-        print("  * Winning moves: " + ", ".join(name[cell] for cell in winning))
-        print("  * Unknown moves: " + ", ".join(name[cell] for cell in unknown))
-        print("  * Losing  moves: " + ", ".join(name[cell] for cell in losing))
+    cells = ((r,c) for r in range(board["size"]) for c in range(r+1))
+    name  = {cell:str(i+1) for i,cell in enumerate(cells)}
+    print("\n AI(" + str(AI_level) + ") found...\n")
+    print("  * Winning moves: " + ", ".join(name[cell] for cell in winning))
+    print("  * Unknown moves: " + ", ".join(name[cell] for cell in unknown))
+    print("  * Losing  moves: " + ", ".join(name[cell] for cell in losing))
 
     # Choose at random among the best moves you can find:
     if   winning: return random.choice(winning)
@@ -164,13 +163,11 @@ def get_player_move(board, last_move):
     """Ask the user which move wants to make. Shows legal moves."""
 
     legal = dict()
-    size  = board["size"]
-    moves = legal_moves(board, last_move)
-    cells = tuple((r,c) for r in range(size) for c in range(r+1))
+    cells = ((r,c) for r in range(board["size"]) for c in range(r+1))
     for i,cell in enumerate(cells):
-        if cell in moves: legal[i+1] = cell
+        if cell in legal_moves(board, last_move): legal[i+1] = cell
 
-    question = "\n What is your next move? (1-{:d})\n\n ".format(len(cells))
+    question = "\n What is your next move?\n\n "
     move     = input(question)
     while not move or int(move) not in legal: move = input(question)
 
@@ -210,13 +207,12 @@ def trike(size, AI_level):
     """
 
     # Initialize game:
+    turn          = random.choice((PLAYER, COMPUTER))
     cells         = tuple((r,c) for r in range(size) for c in range(r+1))
     board         = {cell:EMPTY for cell in cells}
     board["size"] = size
     move          = None
 
-    # Select first player at random:
-    turn = random.choice((PLAYER, COMPUTER))
     if turn == PLAYER: print("\n You play first")
     else:              print("\n The computer plays first")
 
