@@ -110,7 +110,7 @@ def get_value(board, depth):
         value = UNKNOWN     if its value is unknown
 
     """
-
+    
     # Check if the game is already over or if we have run out of depth:
     pawn    = board["pawn"]
     turn    = board[pawn]
@@ -125,7 +125,7 @@ def get_value(board, depth):
         value         = min(value, -get_value(board, depth-1))  # Get value
         board[move]   = EMPTY                                   # Remove checker
         board["pawn"] = pawn                                    # Move pawn back
-        if value == LOSING: break                               # Prunning
+        if value == LOSING: break
 
     return value
 
@@ -136,15 +136,15 @@ def get_computer_move(board, AI_level):
     unknown = []
     losing  = []
     pawn    = board["pawn"]
-
+    
     # Classify all legal moves:
     for move in legal_moves(board):
 
-        board[move]   = COMPUTER                    # Place a checker
-        board["pawn"] = move                        # Move the pawn
+        board[move]   = COMPUTER                    # Place checker
+        board["pawn"] = move                        # Move pawn
         value         = get_value(board, AI_level)  # Get value
-        board[move]   = EMPTY                       # Remove the checker
-        board["pawn"] = pawn                        # Move back the pawn
+        board[move]   = EMPTY                       # Remove checker
+        board["pawn"] = pawn                        # Move pawn back
 
         if   value == WINNING: winning.append(move)
         elif value == UNKNOWN: unknown.append(move)
@@ -231,7 +231,7 @@ def trike(size, AI_level):
     
     if turn == PLAYER: print("\n You play first")
     else:              print("\n The computer plays first")
-    
+
     # Play the game:
     while True:
 
@@ -240,10 +240,10 @@ def trike(size, AI_level):
         if turn == PLAYER: move = get_player_move(board)
         else:              move = get_computer_move(board, AI_level)
 
-        board[move]   =  turn               # Place the checker
-        board["pawn"] =  move               # Move the pawn
+        board[move]   =  turn               # Place checker
+        board["pawn"] =  move               # Move pawn
         turn          = -turn               # Change turn
-        is_over       =  who_wins(board)    # Check if it is over
+        is_over       =  who_wins(board)    # Check if game is over
 
         if is_over:
             show(board)
@@ -251,6 +251,6 @@ def trike(size, AI_level):
             else:                 print("\n You have lost!")
             break
 
-if __name__ == "__main__": trike(size=9, AI_level=5)
+if __name__ == "__main__": trike(size=9, AI_level=4)
 
 ################################################################################
