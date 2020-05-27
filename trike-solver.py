@@ -99,7 +99,7 @@ def decode(code):
     board = {}
     for i in range(SIZE*(SIZE+1)//2, 0, -1):
         board[CELLS[0][i]] = code%10
-        code              /= 10
+        code             //= 10
     pawn = CELLS[0][code]
     return board, pawn
 
@@ -115,6 +115,11 @@ def draw(code):
         row = row.replace(") ", ")")
         print(row)
 
+def count_pieces(code):
+    """Returns the number of pieces in the encoded board"""
+    
+    board, pawn = decode(code)
+    return sum(1 if board[cell] else 0 for cell in CELLS[0][1:])
 
 ### GAME LOGIC #################################################################
 
@@ -213,15 +218,15 @@ if __name__ == "__main__":
     if PRINT_COMPACT:
         n = SIZE*(SIZE+1)//2
         print("\n\tSOLVED POSITIONS:\n")
-        for code in memory:
-            print("\tPlayer {} wins: ({}){}".format(memory[code],
-                                                    str(code)[:-n],
-                                                    str(code)[-n:]))
+        for code in sorted(memory, key=count_pieces):
+            print("\t  Player {} wins: ({}){}".format(memory[code],
+                                                      str(code)[:-n],
+                                                      str(code)[-n:]))
 
     if PRINT_EXTENDED:
         print("\n\tSOLVED POSITIONS:\n")
-        for code in memory:
-            print("\n\tPlayer {} wins:\n".format(memory[code]))
+        for code in sorted(memory, key=count_pieces):
+            print("\n\t  Player {} wins:\n".format(memory[code]))
             draw(code)
 
     print("\n\tBOARD SIZE:       {}".format(SIZE))
