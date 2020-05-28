@@ -49,17 +49,19 @@
 
 __author__   = "Carlos Luna-Mota"
 __license__  = "The Unlicense"
-__version__  = "20200527"
+__version__  = "20200528"
 
 
 ### PARAMETERS (CHANGE THEM!) ################################################## 
 
 SIZE             = 3        # Length of a side of the board
-COMPLETE_TREE    = True     # Evaluate ALL reachable positions
+COMPLETE_TREE    = False    # Evaluate ALL reachable positions
 BREAK_SYMMETRIES = True     # Break mirror & rotational symmetries
 
 PRINT_COMPACT    = False    # Print compact representation of the memory
-PRINT_EXTENDED   = True     # Print graphic representation of the memory 
+PRINT_EXTENDED   = False    # Print graphic representation of the memory 
+PRINT_TREE       = True     # Print tree-like representation of the memory
+
 
 ### BOARD TOPOLOGY #############################################################
 
@@ -120,6 +122,26 @@ def count_pieces(code):
     
     board, pawn = decode(code)
     return sum(1 if board[cell] else 0 for cell in CELLS[0][1:])
+
+def draw_subtree(board, pawn, memory):
+    
+    code = encode(board, pawn)
+    if code in memory:
+
+        # Print current node:
+        n = SIZE*(SIZE+1)//2
+        t = "\t"+"  ┆" * (sum(1 if board[cell] else 0 for cell in CELLS[0][1:]))
+        b = ["".join(str(board[r,c]) for c in range(r+1)) for r in range(SIZE)]
+        w = memory[code]
+        print(t + "  ╰┄┄{} ({} wins)".format("/".join(b), w))
+
+        # Recursively print the descendants:
+        turn = 3-board[pawn] if pawn else 1
+        for move in legal_moves(board, pawn):
+            board[move] = turn
+            draw_subtree(board, move, memory)
+            board[move] = 0
+
 
 ### GAME LOGIC #################################################################
 
@@ -222,12 +244,17 @@ if __name__ == "__main__":
             print("\t  Player {} wins: ({}){}".format(memory[code],
                                                       str(code)[:-n],
                                                       str(code)[-n:]))
+    if PRINT_TREE:
+        print("\n\tGAME TREE:\n")
+        draw_subtree(board, pawn, memory)
 
     if PRINT_EXTENDED:
         print("\n\tSOLVED POSITIONS:\n")
         for code in sorted(memory, key=count_pieces):
             print("\n\t  Player {} wins:\n".format(memory[code]))
             draw(code)
+
+
 
     print("\n\tBOARD SIZE:       {}".format(SIZE))
     print("\tCOMPLETE TREE:    {}".format(COMPLETE_TREE))
