@@ -135,6 +135,9 @@ def draw_subtree(board, pawn, memory):
         w = memory[code]
         print(t + "  ╰┄┄{} ({} wins)".format("/".join(b), w))
 
+        # Remove this node from memory:
+        del memory[code]
+
         # Recursively print the descendants:
         turn = 3-board[pawn] if pawn else 1
         for move in legal_moves(board, pawn):
@@ -246,7 +249,7 @@ if __name__ == "__main__":
                                                       str(code)[-n:]))
     if PRINT_TREE:
         print("\n\tGAME TREE:\n")
-        draw_subtree(board, pawn, memory)
+        draw_subtree(board, pawn, dict(memory))
 
     if PRINT_EXTENDED:
         print("\n\tSOLVED POSITIONS:\n")
