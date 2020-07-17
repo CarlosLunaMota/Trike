@@ -30,19 +30,19 @@
 __all__      = ["trike"]
 __author__   = "Carlos Luna-Mota"
 __license__  = "The Unlicense"
-__version__  = "20200425"
+__version__  = "20200717"
 
 import random
 
 ### CONSTANTS (DO NOT CHANGE THEM!) ############################################
 
-PLAYER   =  1   # Must be 1 or -1
-COMPUTER = -1   # Must be -PLAYER
-EMPTY    =  0   # Must be 0
+PLAYER    =  1  # Must be 1 or -1
+COMPUTER  = -1  # Must be -PLAYER
+EMPTY     =  0  # Must be 0
 
-WINNING  =  1   # Must be  1
-LOSING   = -1   # Must be -1
-UNKNOWN  =  0   # Must be  0
+WINNING   =  1  # Must be  1
+LOSING    = -1  # Must be -1
+UNKNOWN   =  0  # Must be  0
 
 ### GAME LOGIC #################################################################
 
@@ -97,6 +97,31 @@ def who_wins(board):
     if player > computer: return PLAYER
     else:                 return COMPUTER
 
+def reachable_region_size(board):
+    """Returns the size of the region that the pawn can currently reach."""
+
+    size   = board["size"]              #             (0, 0)
+    deltas = (    (-1,-1),(-1, 0),      #         (1, 0), (1, 1)
+              ( 0,-1),        ( 0, 1),  #     (2, 0), (2, 1), (2, 2)
+                  ( 1, 0),( 1, 1))      # (3, 0), (3, 1), (3, 2), (3, 3)
+
+    # With an empty board the reachable region is the whole board
+    if not board["pawn"]: return size*(size+1)//2
+
+    # Otherwise we must find the reachable region with a depth first search...
+    S = [board["pawn"]]     # Stack of unexplored cells
+    R = set()               # Reachable region
+    while S:
+        (rr, cc) = S.pop()
+        for (dr, dc) in deltas:
+            (r, c) = (rr+dr, cc+dc)
+            if 0 <= c <= r < size and board[(r,c)] == EMPTY and (r,c) not in R:
+                S.append((r,c))
+                R.add((r,c))
+
+    # ...and return its size
+    return len(R)
+    
 ### AI #########################################################################
 
 def get_value(board, depth):
@@ -153,7 +178,7 @@ def get_computer_move(board, AI_level):
     # Report results:
     cells = ((r,c) for r in range(board["size"]) for c in range(r+1))
     name  = {cell:str(i+1) for i,cell in enumerate(cells)}
-    print("\n AI("+(str(AI_level) if AI_level > 0 else "infinity")+") found:\n")
+    print("\n AI("+(str(AI_level) if AI_level > 0 else "infinity")+") found\n")
     print("  * Winning moves: " + ", ".join(name[cell] for cell in winning))
     print("  * Unknown moves: " + ", ".join(name[cell] for cell in unknown))
     print("  * Losing  moves: " + ", ".join(name[cell] for cell in losing))
@@ -208,15 +233,17 @@ def show(board):
 
 ### MAIN FUNCTION ##############################################################
 
-def trike(size, AI_level):
+def trike(size, weak_AI, strong_AI):
     """
     A simple Player vs Computer command line implementation of Trike.
 
-     * Parameter `size`     (integer >= 1) controls the boad size.
-     * Parameter `AI_level` (integer >= 0) controls the ply-depth of the AI.
-
-    Any negative value for `AI_level` is interpreted as `infinity`.
-
+     * Parameter  `size`    (integer >= 1) controls the boad size.
+     * Parameters `xxxx_AI` (integer >= 0) control  the ply-depth of the AI.
+       * Negative values of `xxxx_AI` are interpreted as `infinity`.
+       * `weak_AI`   defines the AI behavior before the end-game.
+       * `strong_AI` defines the AI behavior during the end-game.
+       * The end-game starts when the amount of cells that the pawn can reach
+         falls below `2 * strong_AI`.
     """
 
     # Validate parameter:
@@ -236,10 +263,13 @@ def trike(size, AI_level):
     while True:
 
         show(board)
+        reachable = reachable_region_size(board)
+        print("\n Reachable cells: "+str(reachable))
 
-        if turn == PLAYER: move = get_player_move(board)
-        else:              move = get_computer_move(board, AI_level)
-
+        if turn == PLAYER:            move = get_player_move(board)
+        elif 2*strong_AI > reachable: move = get_computer_move(board, strong_AI)
+        else:                         move = get_computer_move(board,   weak_AI)
+            
         board[move]   =  turn               # Place checker
         board["pawn"] =  move               # Move pawn
         turn          = -turn               # Change turn
@@ -251,6 +281,6 @@ def trike(size, AI_level):
             else:                 print("\n You have lost!")
             break
 
-if __name__ == "__main__": trike(size=9, AI_level=4)
+if __name__ == "__main__": trike(size=15, weak_AI=3, strong_AI=10)
 
 ################################################################################
