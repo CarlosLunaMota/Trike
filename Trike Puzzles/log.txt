@@ -1,0 +1,659 @@
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   : . . O
+  . . . . .
+ o x . x o x
+. o . o x o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . . O . .
+ o x . x o x
+. o : o x o x
+
+Player X to play and win:
+      :
+     x .
+    . . .
+   . . . .
+  . . . x O
+ o x . . o x
+. o . o x o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  : O . x .
+ o x . . o x
+. o . o x o x
+
+Player X to play and win:
+      .
+     x .
+    . O .
+   . . . .
+  . : . x .
+ o x . . o x
+. o . o x o x
+
+Player O to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . . . X .
+ o x . : o x
+. o . o x o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   O . . x
+  : . . . .
+ o x . . o x
+. o . o x o x
+
+Player O to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . : X . .
+ o x . . o x
+. o o . x o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   : . x .
+  . . . . .
+ o x O . o x
+. o o . x o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  : O . x .
+ o x . o o x
+. o . . x o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . x O
+  . . o . :
+ o x . . o x
+. o . . x o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . x .
+  . . o O .
+ o x . : o x
+. o . . x o x
+
+Player O to play and win:
+      :
+     x .
+    . . X
+   . . . .
+  . . o . .
+ o x . . o x
+. o . . x o x
+
+Player X to play and win:
+      :
+     x .
+    . . .
+   . . . .
+  . . o x O
+ o x . . o x
+. o . . x o x
+
+Player X to play and win:
+      .
+     x .
+    O x .
+   : o . .
+  . . . . .
+ o x . . o x
+. o . . x o x
+
+Player X to play and win:
+      .
+     x x
+    . . .
+   . o . O
+  . . . . .
+ o x . : o x
+. o . . x o x
+
+Player X to play and win:
+      .
+     x x
+    . . .
+   . o . .
+  . : . . O
+ o x . . o x
+. o . . x o x
+
+Player O to play and win:
+      .
+     x X
+    . : .
+   . o . .
+  . . . . .
+ o x . . o x
+. o . . x o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . o x O
+  . . . . :
+ o x . . o x
+. o . . x o x
+
+Player X to play and win:
+      .
+     x .
+    : O .
+   . o x .
+  . . . . .
+ o x . . o x
+. o . . x o x
+
+Player X to play and win:
+      O
+     x :
+    o . x
+   . . . .
+  . . . . .
+ o x . . o x
+. o . . x o x
+
+Player X to play and win:
+      :
+     x O
+    . . .
+   . . . x
+  . . . o .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      O
+     x .
+    . . :
+   . . . x
+  . . . o .
+ o x . . o x
+. o . x . o x
+
+Player O to play and win:
+      .
+     x .
+    . . .
+   . . . X
+  . . . o :
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      O
+     x .
+    . . :
+   . . . .
+  . . . o x
+ o x . . o x
+. o . x . o x
+
+Player O to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . . . o .
+ o x . X o x
+. o . x : o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   : . O .
+  . . x o .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . . x o .
+ o x . : o x
+. o . x O o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . O . .
+  . x . o .
+ o x . . o x
+. o . x : o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . x . o .
+ o x O . o x
+. o : x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   : . . .
+  O x . o .
+ o x . . o x
+. o . x . o x
+
+Player O to play and win:
+      .
+     x .
+    . . .
+   . . . o
+  . . . X :
+ o x . . o x
+. o . x . o x
+
+Player O to play and win:
+      .
+     x .
+    . . .
+   . . . o
+  . . . . .
+ o x . X o x
+. o . x : o x
+
+Player X to play and win:
+      .
+     x .
+    : O .
+   . x . o
+  . . . . .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      :
+     x O
+    . . .
+   . x . o
+  . . . . .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . : .
+   . x O o
+  . . . . .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . x . o
+  . . . . .
+ o x . : o x
+. o . x O o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . . x . .
+ o x : . o x
+. o O x o o x
+
+Player X to play and win:
+      .
+     x :
+    . O x
+   . . . .
+  . . . . .
+ o x . . o x
+. o o x . o x
+
+Player X to play and win:
+      :
+     x O
+    . . x
+   . . . .
+  . . . . .
+ o x . . o x
+. o o x . o x
+
+Player O to play and win:
+      :
+     x .
+    . . X
+   . . . .
+  . . . . .
+ o x . . o x
+. o o x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . . . . .
+ o x : . o x
+. o O x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   : . O .
+  . . x . .
+ o x o . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . . x . .
+ o x o : o x
+. o . x O o x
+
+Player X to play and win:
+      .
+     x :
+    . O x
+   . . . .
+  . . . . .
+ o x o . o x
+. o . x . o x
+
+Player X to play and win:
+      :
+     x O
+    . . x
+   . . . .
+  . . . . .
+ o x o . o x
+. o . x . o x
+
+Player O to play and win:
+      :
+     x .
+    . . X
+   . . . .
+  . . . . .
+ o x o . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . . . O :
+ o x o x o x
+. o . x . o x
+
+Player O to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . . . . .
+ o x o X o x
+. o . x : o x
+
+Player X to play and win:
+      :
+     x O
+    . . .
+   . . . .
+  . x . . .
+ o x o . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . x . O :
+ o x o . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   O . . .
+  : x . . .
+ o x o . o x
+. o . x . o x
+
+Player X to play and win:
+      :
+     x O
+    . . .
+   . x . .
+  . o . . .
+ o x . . o x
+. o . x . o x
+
+Player O to play and win:
+      .
+     x .
+    . X .
+   . . . .
+  . o . : .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . :
+   . . . .
+  . o . x O
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . o O x .
+ o x . . o x
+. o . x : o x
+
+Player X to play and win:
+      .
+     x .
+    : O .
+   . . . .
+  . o . x .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . : .
+   . . . .
+  . o . O x
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . .
+  . o O . x
+ o x . . o x
+. o . x : o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   . . . O
+  . o . : x
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      :
+     x O
+    . . .
+   . . . .
+  . o . . x
+ o x . . o x
+. o . x . o x
+
+Player O to play and win:
+      :
+     x .
+    . . .
+   . . . .
+  . o . . X
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . : .
+   . . O .
+  . o . . .
+ o x x . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    O . .
+   : . . .
+  x o . . .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    x O .
+   o . : .
+  . . . . .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    x . .
+   o O . .
+  . . . . .
+ o x . . o x
+. o . x : o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   o x . O
+  . . . . :
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   o x . .
+  . . . . .
+ o x . : o x
+. o . x O o x
+
+Player O to play and win:
+      .
+     x .
+    : . .
+   o X . .
+  . . . . .
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   o . x O
+  . . . . :
+ o x . . o x
+. o . x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   o . x .
+  . . . . .
+ o x O . o x
+. o : x . o x
+
+Player X to play and win:
+      .
+     x .
+    . . .
+   o . x .
+  . . . . .
+ o x : . o x
+. o O x . o x
+
+Player X to play and win:
+      .
+     x .
+    : O .
+   o . x .
+  . . . . .
+ o x . . o x
+. o . x . o x
+
+10413074 elements in cache
