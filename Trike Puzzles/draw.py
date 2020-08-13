@@ -95,8 +95,8 @@ if __name__ == "__main__":
             name   = line.split(" ")[1]
             board  = name.split("-")[1]
             height = int(name.split("-")[0])
-            if height > 4: draw(name, board)
-            H[height] += 1  
+            draw(name, board)
+            H[height] += 1
     for i,h in enumerate(H): print i,h
 
 ################################################################################
