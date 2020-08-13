@@ -15,6 +15,7 @@ OBJS   = trike7.o
 
 trike7: $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@
-	./trike7 > log.txt
+	./trike7 > puzzles.txt
+	python draw.py
 	/bin/rm -rf *.o *~
 	/bin/rm -rf trike7
