@@ -12,7 +12,7 @@
   Content:  A set of functions for generating Trike 7 problems.
   Source:   <https://github.com/CarlosLunaMota/Trike>
   Author:   Carlos Luna-Mota
-  Version:  20200813
+  Version:  20200815
 
   =============================================================================
 
@@ -63,11 +63,14 @@ typedef uint_fast64_t hash_t;   /* 64 bits unsigned integer */
 
 /*** PARAMETERS & BOARD TOPOLOGY *********************************************/
 
-#define NUM_TRIALS  1   /* Number of randomly generated boards to solve */
-#define MIN_PIECES  8   /* Number of pieces in board before solving it  */
-#define MIN_HEIGHT  4   /* Minimum required length for the problems     */
-#define MAX_HEIGHT 20   /* Maximum allowed  length for the problems     */
-#define MIN_MOVES   8   /* Minimum required number of legal moves       */
+#define NUM_TRIALS 1000 /* Number of randomly generated boards to solve */
+#define SEED_PLIES   10 /* Number of pieces in board before solving it  */
+
+#define MIN_REGION   14 /* Minimum required size of the empty region    */
+#define MAX_PLIES    28 /* Maximum allowed  length for the problems     */
+#define MIN_PLIES     8 /* Minimum required length for the problems     */
+#define MIN_MOVES     8 /* Minimum required number of legal moves       */
+#define MIN_REPLIES   4 /* Minimum required number of legal replies     */
 
 /* `N[direction][index]` is the `neighbor` of `index` in that `direction` */
 const uint_t N[7][29] = {{ 0,               1,
@@ -170,6 +173,35 @@ uint_t unhash(uint_t *board, hash_t h) {
 
     /* Return the value */
     return value;
+}
+
+/* The size of the connected component `cell` */
+uint_t component_size(uint_t *board, uint_t cell) {
+
+    uint_t Q[29], next, size;       /* Queue */
+    uint_t i, C[29];                /* candidates */
+
+    /* Particular case: */
+    if (cell == 0) { return 0; }
+
+    /* Initialize candidates */
+    for (i = 1; i <= 28; i++) { C[i] = (board[cell] == board[i]) ? 1 : 0; }
+    C[cell] = C[0] = 0;
+
+    /* Breath first search */
+    next = size = 0;
+    Q[size++] = cell;
+    while (next < size) {
+        i = Q[next++];  
+        if (C[N[1][i]]) { C[N[1][i]] = 0; Q[size++] = N[1][i]; }
+        if (C[N[2][i]]) { C[N[2][i]] = 0; Q[size++] = N[2][i]; }
+        if (C[N[3][i]]) { C[N[3][i]] = 0; Q[size++] = N[3][i]; }
+        if (C[N[4][i]]) { C[N[4][i]] = 0; Q[size++] = N[4][i]; }
+        if (C[N[5][i]]) { C[N[5][i]] = 0; Q[size++] = N[5][i]; }
+        if (C[N[6][i]]) { C[N[6][i]] = 0; Q[size++] = N[6][i]; }
+    }
+        
+    return size;
 }
 
 
@@ -298,6 +330,8 @@ uint_t solve(uint_t *board, stree *cache) {
 
     /* Mid-game position: recourse */
     else {
+        uint_t empty_cells = 0;
+        uint_t replies[12], num_replies = 0;
         uint_t move_value;
         uint_t win_move   = 0;   /*  Optimal move from this position         */
         uint_t height     = 0;   /*  # of remaining plies with perfect play  */
@@ -339,9 +373,20 @@ uint_t solve(uint_t *board, stree *cache) {
             }
         }
 
+        /* Get additional information */
+        if (unique) { 
+            empty_cells     = component_size(board, win_move);
+            board[0]        = win_move;
+            board[win_move] = next;
+            num_replies     = get_moves(board, replies);
+            board[win_move] = 0;
+            board[0]        = pawn;            
+        }
+        
         /* Output selected problems */
-        if (unique && MIN_MOVES <= num_moves &&
-            MIN_HEIGHT <= height && height <= MAX_HEIGHT) {
+        if (unique                 && MIN_REGION  <= empty_cells &&
+            MIN_MOVES <= num_moves && MIN_REPLIES <= num_replies &&
+            MIN_PLIES <= height    && height <= MAX_PLIES) {
             write(board, win_move, height);
         }
 
@@ -377,9 +422,8 @@ int main() {
 
     for (size_t g = 0; g < NUM_TRIALS; g++) {
         for (i = 0; i <= 28; i++)        { board[i] = 0;       }
-        for (i = 0; i < MIN_PIECES; i++) { play_random(board); }
+        for (i = 0; i < SEED_PLIES; i++) { play_random(board); }
         solve(board, &cache);
-        //printf("\n%zu elements in cache\n\n", clear(&cache));
         clear(&cache);
     }
 }

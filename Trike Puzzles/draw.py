@@ -6,7 +6,7 @@
 #  Content:  Figure generator for Trike7.c problems
 #  Source:   <https://github.com/CarlosLunaMota/Trike>
 #  Author:   Carlos Luna-Mota
-#  Version:  20200813
+#  Version:  20200815
 #
 ################################################################################
 
@@ -97,6 +97,7 @@ if __name__ == "__main__":
             height = int(name.split("-")[0])
             draw(name, board)
             H[height] += 1
-    for i,h in enumerate(H): print i,h
+    for i,h in enumerate(H):
+        if (h): print i,h
 
 ################################################################################
